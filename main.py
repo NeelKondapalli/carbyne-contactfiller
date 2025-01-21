@@ -7,14 +7,17 @@ import os
 import json
 import openai
 
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Make sure to set this environment variable
+# openai.api_key = os.getenv("OPENAI_API_KEY") 
+
+openai.api_key = st.secrets["OPENAI_API_KEY"] 
 
 APOLLO_API_URL_ORG = "https://api.apollo.io/api/v1/mixed_companies/search"
 APOLLO_API_URL_PEOPLE = "https://api.apollo.io/v1/mixed_people/search"
 
 def get_api_key():
     """Retrieve the API key from environment variables."""
-    api_key = os.getenv("APOLLO_API_KEY")
+    #api_key = os.getenv("APOLLO_API_KEY")
+    api_key = st.secrets["APOLLO_API_KEY"]
     if not api_key:
         raise ValueError("APOLLO_API_KEY environment variable not set")
     return api_key
