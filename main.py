@@ -9,14 +9,15 @@ import json
 APOLLO_API_URL_ORG = "https://api.apollo.io/api/v1/mixed_companies/search"
 APOLLO_API_URL_PEOPLE = "https://api.apollo.io/v1/mixed_people/search"
 
-DEFAULT_TITLES = ["Director of Safety", "Safety Director", "Safety Manager", "EHS Director", "HSE Manager", "Security Director", "Chief Safety Officer", "VP of Safety", "Head of Safety", "Safety Coordinator", "Environmental Health and Safety", "Occupational Safety", "Risk Manager", "Workplace Safety", "Director", "VP", "Safety"]
+DEFAULT_TITLES = ["Director of Safety", "Safety Director", "Safety Manager", "EHS Director", "HSE Manager", "Security Director", "Chief Safety Officer", "VP of Safety", "Head of Safety", "Safety Coordinator", "Environmental Health and Safety", "Occupational Safety", "Risk Manager", "Workplace Safety", "Safety"]
 
 def get_api_key():
     """Retrieve the API key from environment variables."""
-    try:
-        api_key = st.secrets["APOLLO_API_KEY"]
-    except:
-        api_key = os.getenv("APOLLO_API_KEY")
+    # Comment this line if you are running the app locally
+    api_key = st.secrets["APOLLO_API_KEY"]
+    
+    # Uncomment this line if you are running the app locally
+    #api_key = os.getenv("APOLLO_API_KEY")
     if not api_key:
         raise ValueError("APOLLO_API_KEY environment variable not set")
     return api_key
@@ -126,7 +127,6 @@ def main():
             input_df = pd.read_excel(uploaded_file, sheet_name=sheet_name)
             st.write("Columns in the uploaded sheet:", input_df.columns.tolist())
 
-            st.write("\n### Default Person Titles")
             st.write("The following titles will be used to search for contacts:")
             st.write(DEFAULT_TITLES)
             
