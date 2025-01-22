@@ -13,8 +13,10 @@ DEFAULT_TITLES = ["Director of Safety", "Safety Director", "Safety Manager", "EH
 
 def get_api_key():
     """Retrieve the API key from environment variables."""
-    #api_key = st.secrets["APOLLO_API_KEY"]
-    api_key = os.getenv("APOLLO_API_KEY")
+    try:
+        api_key = st.secrets["APOLLO_API_KEY"]
+    except:
+        api_key = os.getenv("APOLLO_API_KEY")
     if not api_key:
         raise ValueError("APOLLO_API_KEY environment variable not set")
     return api_key
