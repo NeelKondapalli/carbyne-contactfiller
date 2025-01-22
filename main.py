@@ -134,7 +134,7 @@ def main():
             columns = input_df.columns.str.lower()
             
            
-            lead_name_matches = columns.str.contains('organization|company|account|lead|name')
+            lead_name_matches = columns.str.contains('organization|company|account name|lead|name')
             lead_name_col = input_df.columns[lead_name_matches].tolist()[0] if any(lead_name_matches) else None
             
 
